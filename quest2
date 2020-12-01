@@ -1,0 +1,49 @@
+router.post("/verifier", (req, res)=>{
+        db.user.findOne({
+            where:{email:req.body.email},
+            include:[{
+                model: db.quest
+            }]
+        })
+        .then((user)=>{
+           
+            for(var i=0; i<user.quests.lenght; i++){
+                if(user.quests[i].quest.nom==req.body.nom){
+                    var faire=user.quests
+                    console.log(faire)
+                        if(!quest){
+                            res.json({
+                                message:"cette quete est entrain d'etre mise a jour repasser plus tard",
+                                accomplie: quest.nom
+                            })
+                        }
+                        else if(quest && quest.condition==true && faire.status==true){
+                            res.status(200).json({
+                                message:"revenez plus tard vous avez déja compléter cette quete:",
+                                accomplie: quest.nom
+                            })
+                        }
+                        else if(quest && faire.status==false && quest.condition==true){
+                                 const point=user.artpoint;
+                                 const reward = quest.price;
+                                 user.update({
+                                     artpoint:point+reward,
+                                     accomplie:true 
+                                 })
+                                res.status(200).json({
+                                    message:"vous avez recu votre recompense",
+                                    
+                                })
+            
+                        }
+                        else{
+                            res.json("erreur survenu veuillez reassayer ulterieurement")
+                        }
+                }
+            }
+           
+        })
+        .catch(err=>{
+            res.json(err)
+        })
+})

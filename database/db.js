@@ -29,21 +29,41 @@ db.image = require("../models/Image")(dbinfo,Sequelize);
 db.job = require("../models/Job")(dbinfo,Sequelize);
 db.oeuvre = require("../models/Oeuvre")(dbinfo,Sequelize);
 db.quest = require("../models/Quest")(dbinfo,Sequelize);
-db.statistique = require("../models/Statistique")(dbinfo,Sequelize);
 db.user = require("../models/User")(dbinfo,Sequelize);
+db.faire = require("../models/Faire")(dbinfo,Sequelize);
+db.like = require("../models/Like")(dbinfo,Sequelize);
+db.follow = require("../models/Follow")(dbinfo,Sequelize);
+db.commentaire = require("../models/Commentaire")(dbinfo,Sequelize);
+db.newsletter = require("../models/Newsletter")(dbinfo,Sequelize);
 
 
-db.oeuvre.belongsToMany(db.user,{ through: "Statistique",foreignKey:"oeuvreId"});
-db.user.belongsToMany(db.oeuvre,{ through: "Statistique", foreignKey:"userId"});
 
-db.user.belongsToMany(db.quest,{ through: "faire", foreignKey:"userId"});
-db.quest.belongsToMany(db.user,{ through: "faire", foreignKey:"questId"});
+
+db.user.belongsToMany(db.quest,{ through: "Faire", foreignKey:"userId"});
+db.quest.belongsToMany(db.user,{ through: "Faire", foreignKey:"questId"});
+
 
 
 db.user.hasMany(db.advantage,{foreignKey:"userId"});
 db.user.hasMany(db.eula,{foreignKey:"userId"});
-db.user.hasMany(db.quest,{foreignKey:"userId"});
+db.user.hasMany(db.oeuvre,{foreignKey:"userId"});
+db.user.hasMany(db.follow,{foreignKey:"userId"});
 db.user.hasMany(db.achievement,{foreignKey:"userId"});
+db.user.hasMany(db.job,{foreignKey:"userId"});
+
+
+db.abonnement.hasMany(db.user,{foreignKey:"userId"});
+
+
+
+
+
+
+
+db.oeuvre.hasMany(db.like,{foreignKey:"oeuvreId"});
+db.oeuvre.hasMany(db.commentaire,{foreignKey:"oeuvreId"});
+db.oeuvre.hasMany(db.image,{foreignKey:"oeuvreId"});
+
 
 
 
@@ -54,6 +74,6 @@ db.user.hasMany(db.achievement,{foreignKey:"userId"});
 db.dbinfo = dbinfo;
 db.Sequelize = Sequelize;
 
-dbinfo.sync({force: true});
+//dbinfo.sync({force: true});
 
 module.exports = db;

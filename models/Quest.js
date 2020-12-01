@@ -17,12 +17,13 @@ module.exports = (dbinfo, Sequelize) => {
             },
             catégorie: {
                 type: Sequelize.DataTypes.STRING(30),
+                
 
             },
             price:{
                 type:Sequelize.DataTypes.INTEGER(3)
             },
-            verif:{
+            condition:{
                 type:Sequelize.DataTypes.BOOLEAN,
             }
 

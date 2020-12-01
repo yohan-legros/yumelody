@@ -6,6 +6,14 @@ module.exports = (dbinfo, Sequelize) => {
                 primaryKey: true,
                 autoIncrement: true
             },
+            nom: {
+                type: Sequelize.DataTypes.STRING(50),
+                allowNull: false
+            },
+            description: {
+                type: Sequelize.DataTypes.STRING(100),
+                allowNull: true
+            },
             
             image: {
                 type: Sequelize.DataTypes.STRING(255),

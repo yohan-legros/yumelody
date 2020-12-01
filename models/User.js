@@ -17,7 +17,7 @@ module.exports = (dbinfo, Sequelize) => {
             },
             username: {
                 type: Sequelize.DataTypes.STRING(45),
-                allowNull: true
+                allowNull: false
             },
             tel: {
                 type: Sequelize.DataTypes.INTEGER(10),
@@ -43,7 +43,7 @@ module.exports = (dbinfo, Sequelize) => {
                 type: Sequelize.DataTypes.TEXT,
                 allowNull: false
             },
-            status: {
+            artist: {
                 type: Sequelize.DataTypes.BOOLEAN,
                 allowNull: true
             },
@@ -63,7 +63,19 @@ module.exports = (dbinfo, Sequelize) => {
             artpoint: {
                 type: Sequelize.DataTypes.INTEGER,
                 allowNull: true
-            },           
+            },   
+            accomplie: {
+                type: Sequelize.DataTypes.BOOLEAN,
+                allowNull: true
+            },
+            Status: {
+                type: Sequelize.DataTypes.BOOLEAN,
+                allowNull: true
+            },
+            compteur: {
+                type: Sequelize.DataTypes.INTEGER(3),
+
+            },     
         },
         {
             timestamps: true,

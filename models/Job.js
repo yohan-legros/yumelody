@@ -11,6 +11,10 @@ module.exports = (dbinfo, Sequelize) => {
                 type: Sequelize.DataTypes.STRING(100),
                 allowNull: false
             },
+            image: {
+                type: Sequelize.DataTypes.STRING(255),
+                allowNull: true
+            },
             //titre du job request
             titre: {
                 type: Sequelize.DataTypes.STRING(100),

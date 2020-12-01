@@ -9,14 +9,14 @@ module.exports = (dbinfo, Sequelize) => {
             
             titre: {
                 type: Sequelize.DataTypes.STRING(100),
-                allowNull: true
+                allowNull: false
             },
             description: {
                 type: Sequelize.DataTypes.STRING(255),
                 allowNull: true
             },
             condition: {
-                type: Sequelize.DataTypes.BOOLEAN,
+                type: Sequelize.DataTypes.INTEGER(3),
 
             },
             reward:{

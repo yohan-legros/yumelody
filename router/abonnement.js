@@ -1,21 +1,18 @@
-
 const express = require("express");
+const router = express.Router();
 const db = require("../database/db");
 
-const router = express.Router();
 
-
-
-router.post("/create", (req, res) => {
-    db.challenge.findOne({
-            where: { titre: req.body.titre },
+router.post("/add", (req, res) => {
+    db.abonnement.findOne({
+            where: { nom: req.body.nom },
         })
-        .then((challenge) => {
-            if (!challenge) {
-                db.challenge.create(req.body)
-                    .then(challengeitem => {
+        .then((abonnement) => {
+            if (!abonnement) {
+                db.abonnement.create(req.body)
+                    .then(abonnementitem => {
 
-                        res.status(200).json({ abonnement: challengeitem });
+                        res.status(200).json({ abonnement: abonnementitem });
                     })
                     .catch((err) => {
                         res.json({
@@ -23,7 +20,7 @@ router.post("/create", (req, res) => {
                         });
                     });
             } else {
-                res.json("le challenge existe déja");
+                res.json("l'abonnement est déja actif");
             }
         })
         .catch((err) => {
@@ -32,15 +29,14 @@ router.post("/create", (req, res) => {
             });
         });
 });
-
 router.get("/all", (req, res) => {
-    db.challenge
+    db.abonnement
         .findAll()
         .then((reponse) => {
-            res.status(200).json({ challenge: reponse });
+            res.status(200).json({ abonnement: reponse });
         })
         .catch((err) => {
             res.json(err);
         });
 });
-module.exports=router;
+module.exports = router;

@@ -17,6 +17,24 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 
 app.use("/user",require ("./router/user"));
+app.use("/quest",require ("./router/quest"));
+app.use("/oeuvre",require ("./router/oeuvre"));
+app.use("/achievement",require ("./router/achievement"));
+app.use("/job",require ("./router/job"));
+app.use("/abonnement",require ("./router/abonnement"));
+app.use("/newsletter",require ("./router/newsletter"));
+app.use("/challenge",require ("./router/challenge"));
+
+
+
+
+
+
+
+
+
+
+
 
 
 app.listen(port, () => {

@@ -1,12 +1,10 @@
 module.exports = (dbinfo, Sequelize) => {
     return dbinfo.define(
-        "faire", {
-           reset:{
-            type:Sequelize.DataTypes.BOOLEAN,
+        "Faire", {
+           status:{
+            type: Sequelize.DataTypes.BOOLEAN,
+                allowNull: true
            }
-        }, {
-            timestamps: true,
-            underscored: true
-        }
+        },
     );
 };
